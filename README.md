@@ -7,7 +7,7 @@ The number of clicks in the image area should be unique to each image, and shoul
 - a list of at least 5 images, listed by name
 - an area to display the selected image
 
-## In the cat display area, the following should be displayed
+## In the image display area, the following should be displayed
 
 - the image's name
 - an image
