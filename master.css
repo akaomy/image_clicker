@@ -1,0 +1,11 @@
+.wrapper {
+  border: 1px grey solid;
+  padding: 3%;
+  margin: 5%;
+  display: flex;
+}
+
+/* img, p, span {
+  display: block;
+  border: 1px red solid;
+} */
