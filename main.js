@@ -32,15 +32,16 @@ let model = {
 let controller = {
 
   init: function () {
-
+    imageView.init();
+    imageListView.init();
   },
 
   getCurrentImg: function () {
-
+    return model.currentImg;
   },
 
   getImage: function () {
-
+    return model.imgs;
   },
 
   setCurrentImg: function () {
