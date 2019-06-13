@@ -53,6 +53,7 @@ let controller = {
   // increments clickCount by one each time this function was called
   incrementCounter: function () {
     model.currentImg.clickCount++;
+    imageView.render();
   }
 }
 
@@ -67,13 +68,16 @@ let imageView = {
 
     this.imageElement.addEventListener('click', function(ev) {
       controller.incrementCounter();
-    };
+    });
 
     this.render();
   },
 
   render: function () {
-
+    let currentImg = controller.getCurrentImg();
+    this.countElement.textContent = currentImg.clickCount();
+    this.imageNameElement.textContent = currentImg.name;
+    this.imageElement.src = currentImg.imgSrc;
   }
 
 }
