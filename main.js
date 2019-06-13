@@ -65,6 +65,8 @@ let imageView = {
     this.imageElement.addEventListener('click', function(ev) {
       controller.incrementCounter();
     };
+
+    this.render();
   },
 
   render: function () {
@@ -76,7 +78,10 @@ let imageView = {
 let imageListView = {
 
   init: function () {
+    // create a var for image list elements
+    this.imageListElement = document.getElementById('img-list');
 
+    this.render();
   },
 
   render: function () {
