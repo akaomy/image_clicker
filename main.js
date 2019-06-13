@@ -3,27 +3,27 @@ let model = {
   imgs: [
     {
       clickCount: 0,
-      name : 'nature',
+      title : 'nature',
       imgSrc : 'https://placeimg.com/640/480/nature'
     },
     {
       clickCount: 0,
-      name : 'animals',
+      title : 'animals',
       imgSrc : 'https://placeimg.com/640/480/animals'
     },
     {
       clickCount: 0,
-      name : 'arch',
+      title : 'arch',
       imgSrc : 'https://placeimg.com/640/480/arch'
     },
     {
       clickCount: 0,
-      name : 'people',
+      title : 'people',
       imgSrc : 'https://placeimg.com/640/480/people'
     },
     {
       clickCount: 0,
-      name : 'tech',
+      title : 'tech',
       imgSrc : 'https://placeimg.com/640/480/tech'
     }
   ]
@@ -40,7 +40,7 @@ let controller = {
     return model.currentImg;
   },
 
-  getImage: function () {
+  getImages: function () {
     return model.imgs;
   },
 
@@ -62,7 +62,7 @@ let imageView = {
   init: function () {
     // store variables with elements that we have in index.html
     this.imageViewContainerElement = document.querySelector('.img-view-container');
-    this.imageNameElement = document.getElementById('img-name');
+    this.imageTitleElement = document.getElementById('img-title');
     this.imageElement = document.getElementById('img');
     this.imageDisplayCountElement = document.getElementById('cat-count');
 
@@ -73,10 +73,16 @@ let imageView = {
     this.render();
   },
 
+  /*
+  saves run results of function getCurrentImg into the variable currentImg
+  updates initial value of counter to + 1 once for each click on image
+  updates initial text value of image's title to the current's image title
+  sets image's url to the current image url
+  */
   render: function () {
     let currentImg = controller.getCurrentImg();
     this.countElement.textContent = currentImg.clickCount();
-    this.imageNameElement.textContent = currentImg.name;
+    this.imageTitleElement.textContent = currentImg.title;
     this.imageElement.src = currentImg.imgSrc;
   }
 
@@ -92,10 +98,33 @@ let imageListView = {
   },
 
   render: function () {
+    let images = controller.getImages();
 
+    this.imageListElement.innerHTML = "";
+
+    // for (const each in images.length) {
+    // loops over the images
+    for (let i = 0; i < images.length; i++) {
+      let img = images[i];
+
+      let btnElem = document.createElement('button');
+      btnElem.textContent = img.title;
+
+      // to make event listener to work inside a for loop we use closures
+      // when you click on the button. tell the controller to set the current image
+      // and render this image
+      btnElem.addEventListener('click', (function(img) {
+        return function() {
+          controller.setCurrentImg(img);
+          imageView.render();
+        };
+      })(img));
+
+      // add the element that we'ce created to the list
+      this.imageListElement.appendChild(btnElem);
+    };
   }
-
-}
+};
 
 
 controller.init();
