@@ -56,7 +56,15 @@ let controller = {
 let imageView = {
 
   init: function () {
+    // store variables with elements that we have in index.html
+    this.imageViewContainerElement = document.querySelector('.img-view-container');
+    this.imageNameElement = document.getElementById('img-name');
+    this.imageElement = document.getElementById('img');
+    this.imageDisplayCountElement = document.getElementById('cat-count');
 
+    this.imageElement.addEventListener('click', function(ev) {
+      controller.incrementCounter();
+    };
   },
 
   render: function () {
