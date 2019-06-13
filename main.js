@@ -44,12 +44,15 @@ let controller = {
     return model.imgs;
   },
 
-  setCurrentImg: function () {
-
+  // stores currently selected image to the object that was passed
+  // in setCurrentImg function
+  setCurrentImg: function (img) {
+    model.currentImg = img;
   },
 
+  // increments clickCount by one each time this function was called
   incrementCounter: function () {
-
+    model.currentImg.clickCount++;
   }
 }
 
